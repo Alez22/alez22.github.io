@@ -88,6 +88,12 @@ img { max-width: 100%; }
 table { border-collapse: collapse; display: block; overflow-x: auto; }
 th, td { border: 1px solid var(--edge); padding: 6px 10px; text-align: left; }
 
+/* About page header: avatar next to name and role */
+.profile { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 20px; margin-bottom: 28px; }
+.profile img { width: 96px; height: 96px; border-radius: 50%; border: 1px solid var(--accent); }
+.profile h1 { margin: 0 0 4px; }
+.profile .meta { margin: 0; }
+
 /* Lists of posts and repositories share the same item layout */
 .item-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
 .item-list li { display: grid; gap: 2px; }
