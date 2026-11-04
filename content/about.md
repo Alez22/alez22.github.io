@@ -1,4 +1,4 @@
-title: Alessandro Giuliani
+title: About
 ---
 <header class="profile">
   <img src="/assets/img/avatar.jpg" alt="Alessandro Giuliani" width="96" height="96">
@@ -28,7 +28,7 @@ on real hardware with real constraints: tight memory, hard timing, no room for g
 
 <p class="section-label">Notes</p>
 
-The [notes](/blog.html) are my findings and reasoning, drawn from hands-on experience:
+The [notes](/) are my findings and reasoning, drawn from hands-on experience:
 what I ran into, how I worked through it, and what I took away from it.
 
 <p class="section-label">Off the clock</p>

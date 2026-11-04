@@ -7,7 +7,8 @@ Plain HTML/CSS, Markdown content, one small Python build script.
 
 | Path | Purpose |
 |------|---------|
-| `content/about.md` | Home page (`/`) |
+| `content/home.md` | Intro line of the home page (`/`); the notes list is added below it |
+| `content/about.md` | About page (`/about.html`) |
 | `content/projects.md` | Projects page; the repo list is filled by `assets/repos.js` |
 | `content/posts/YYYY-MM-DD-slug.md` | One note per file, published at `/posts/slug.html` |
 | `templates/page.html` | Shared layout (nav, footer) |

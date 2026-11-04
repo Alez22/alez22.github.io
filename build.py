@@ -4,9 +4,10 @@
 @brief Converts the Markdown files in content/ into a static site in _site/.
 
 Input layout:
-  content/about.md              -> _site/index.html
+  content/home.md               -> _site/index.html (intro line + list of all posts)
+  content/about.md              -> _site/about.html
   content/projects.md           -> _site/projects.html
-  content/posts/YYYY-MM-DD-slug.md -> _site/posts/slug.html (+ _site/blog.html index)
+  content/posts/YYYY-MM-DD-slug.md -> _site/posts/slug.html
   assets/                       -> _site/assets/ (copied as-is)
 
 Each Markdown file starts with a small header, closed by a line with "---":
@@ -142,7 +143,7 @@ def load_post(path):
 
 def build_posts(template):
     """
-    @brief Renders every post page and the blog index page.
+    @brief Renders every post page and the home page (intro from home.md + post list).
     """
     posts = [load_post(path) for path in sorted(POSTS_DIR.glob("*.md"))]
     posts.sort(key=lambda post: post["date"], reverse=True)
@@ -171,7 +172,13 @@ def build_posts(template):
         list_html = '<ul class="item-list">\n' + "\n".join(index_items) + "\n</ul>"
     else:
         list_html = '<p class="desc">No notes yet.</p>'
-    write_output("blog.html", render_page(template, "Notes", "<h1>Notes</h1>\n" + list_html, "blog"))
+
+    home_header, home_body = read_source(CONTENT_DIR / "home.md")
+    home_html = (
+        f'<div class="home-intro">{markdown_to_html(home_body)}</div>\n'
+        f'<p class="section-label">Notes</p>\n{list_html}'
+    )
+    write_output("index.html", render_page(template, home_header["title"], home_html, "blog"))
     print(f"built {len(posts)} post(s)")
 
 
@@ -193,7 +200,7 @@ def main():
     shutil.copytree(ASSETS_DIR, OUTPUT_DIR / "assets")
 
     template = TEMPLATE_FILE.read_text(encoding="utf-8")
-    build_static_page(template, "about.md", "index.html", "about")
+    build_static_page(template, "about.md", "about.html", "about")
     build_static_page(template, "projects.md", "projects.html", "projects",
                       '<script src="/assets/repos.js" defer></script>')
     build_posts(template)
